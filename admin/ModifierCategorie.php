@@ -1,22 +1,3 @@
-<?php
-    $cn = mysqli_connect("localhost","root","","ElectroSouq");
-    if(mysqli_connect_errno())
-    {
-        echo "error de connection";
-        exit();
-    }
-        $req = "select * from categorie";
-        $result = $cn ->query($req);
-        if(isset($_GET['idS']))
-        {
-            $idS = $_GET['idS'];
-            $req = "delete from categorie where Id=$idS";
-            $result = $cn->query($req);
-            header("location:list_Categorie.php");
-        }
-
-?>
-
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 
@@ -262,33 +243,30 @@
                 <!-- ============================================================== -->
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
-                <div class="card col-md-8 mx-auto">                    
+                <div class="row">
+                    <div class="col-6 mx-auto">
+                        <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title"> list de Categorie : </h5>
+                                <form action="" method="POST">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                          <div class="form-group">
+                                              <h3> Categorie : </h3>
+                                            <label> Nom de categorie :  </label>
+                                            <input class="form-control" name="NomCategorie"> </input>
+                                          </div>
+                                          <button type="submit" class ="btn btn-success float-right"> Modifier </button>  
+                                    </div> 
+                                       
+                                </form>
+                            
                             </div>
-                            <table class="table">
-                              <thead>
-                                
-                                <tr>
-                                  <th scope="col">Nom de Categorie </th>
-                                  <th scope="col"> Edit </th>
-                                  <th scope="col"> Delete</th>
-                                 
-                                </tr>
-                              </thead>
-                              <tbody>
-                              <?php while($row=$result ->fetch_assoc())
-                              {
-                              ?>
-                               <tr>
-                                    <td> <?php echo $row ['Nom']; ?> </td>
-                                    <td> <a class="bg-info text-white p-1"> <i class="fas fa-pencil-alt"> </i> </a> </td>
-                                    <td> <a class="bg-danger text-white p-1" href="List_categorie.php?idS= <?php echo $row['Id'] ?> "> <i class="fas fa-trash-alt"> </i> </a> </td>
-                               </tr>
-                               <?php } ?>
-                              </tbody>
-                            </table>
                            
+                        </div>
+                     </div>
+                    </div>
+            </div>
+                            
                  </div>
             
                

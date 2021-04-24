@@ -1,5 +1,44 @@
+<?php
+    $cn = mysqli_connect("localhost","root","","ElectroSouq");
+    if(mysqli_connect_errno())
+    {
+        echo "error de connection";
+        exit();
+    }
+    if(isset($_POST['NomCategorie']))
+    {
+        $NomCat = $_POST['NomCategorie'];
+        $req = "insert into categorie values (null,'$NomCat')";
+        $result = $cn ->query($req);
+        if($result== true)
+        {
+            echo "inserted";
+        }
+        else
+        {
+            echo $cn-> error;
+        }
+    
+    }
+    if(isset($_POST['NomMarque']))
+    {
+        $NomMar = $_POST['NomMarque'];
+        $req = "insert into marque values(null,'$NomMar')";
+        $rst = $cn ->query($req);
+        if($rst == true)
+        {
+            echo "inserted";
+        }
+        else
+        {
+            echo $cn ->error;
+        }
+    }
+   
+?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
+
 
 <head>
     <meta charset="utf-8">
@@ -222,6 +261,7 @@
         <!-- Left Sidebar - style you can find in sidebar.scss  -->
         <!-- ============================================================== -->
         <?php include 'Menu.php' ?>
+        
         <!-- ============================================================== -->
         <!-- End Left Sidebar - style you can find in sidebar.scss  -->
         <!-- ============================================================== -->
@@ -239,6 +279,7 @@
             <!-- ============================================================== -->
             <!-- Container fluid  -->
             <!-- ============================================================== -->
+        
             <div class="container-fluid">
                 <!-- ============================================================== -->
                 <!-- Start Page Content -->
@@ -247,15 +288,15 @@
                     <div class="col-6">
                         <div class="card">
                             <div class="card-body">
-                                <form action="operation.php" method="POST">
+                                <form action="" method="POST">
                                     <div class="row">
                                         <div class="col-md-12">
                                           <div class="form-group">
                                               <h3> Categorie : </h3>
                                             <label> Nom de categorie :  </label>
-                                            <input class="form-control" name="nom"> </input>
+                                            <input class="form-control" name="NomCategorie"> </input>
                                           </div>
-                                          <button class ="btn btn-success float-right"> Ajouter</button>  
+                                          <button type="submit" class ="btn btn-success float-right"> Ajouter</button>  
                                     </div> 
                                        
                                 </form>
@@ -268,15 +309,15 @@
                     <div class="col-6">
                         <div class="card">
                             <div class="card-body">
-                                <form action="operation.php" method="POST">
+                                <form action="" method="POST">
                                     <div class="row">
                                         <div class="col-md-12">
                                           <div class="form-group">
                                               <h3> Marque : </h3>
                                             <label> Nom de Marque : </label>
-                                            <input class="form-control" name="nom"> </input>
+                                            <input class="form-control" name="NomMarque"> </input>
                                           </div> 
-                                          <button class="btn btn-success float-right"> Ajouter </button>  
+                                          <button type="submit" class="btn btn-success float-right"> Ajouter </button>  
                                     </div> 
                                        
                                 </form>
