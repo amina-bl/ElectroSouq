@@ -5,35 +5,33 @@
          echo "error de connection";
          exit();
      }
-     if(isset($_GET['id']))
-     {
-          $Id = $_GET['id'];
-          $sql = "select * from categorie where Id = '$Id'" ;
-          $result = $cn ->query($sql);
-          $row=$result->fetch_assoc();
-         
+     if(isset($_GET['id'])){
+        $Id = $_GET['id'];
+        $sql = "select * from marque where Id =".$Id ;
+        $result = $cn->query($sql);
+        $row=$result->fetch_assoc();
+     }else{
+         header("location:List_Marque.php");
      }
-     else
-     {
-          header("location:List_Categorie.php");
-     }
-    
+
+     
      if(isset($_POST['Nom']))
      {
-       
         $nom = $_POST['Nom'];
-        $req = "update categorie set Nom = '$nom' where Id ='$Id' ";
+        $req = "update marque set Nom = '$nom' where Id =$Id";
         $result = $cn ->query($req); 
-
-        if($result)
-        {
-            header("location:List_Categorie.php");
+        if($result){
+            header("location:List_Marque.php");
         }
-        else
-        {
+        else{
             echo $cn->error;
         }
-    }
+        
+     }
+    
+
+        
+
 ?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
@@ -288,8 +286,8 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                           <div class="form-group">
-                                              <h3> Categorie : </h3>
-                                            <label> Nom de categorie :  </label>
+                                              <h3> Marque : </h3>
+                                            <label> Nom de marque  :  </label>
                                            
                                             <input class="form-control" name="Nom" value="<?php echo $row["Nom"];?>"  > </input>
                                             
